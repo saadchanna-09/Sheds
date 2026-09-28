@@ -1616,6 +1616,581 @@
       }
     }
 
+    /* ============================================
+   GLOBAL ANIMATIONS & TRANSITIONS
+============================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll reveal class for smooth section fade-in */
+.animate-fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUpIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeUpIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   SECTION 1: SHED TYPES & STYLES
+============================================ */
+.shed-types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.shed-type-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.shed-type-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}
+
+.shed-type-img-wrapper {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.shed-type-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.shed-type-card:hover .shed-type-img-wrapper img {
+  transform: scale(1.05);
+}
+
+.shed-type-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--green);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+}
+
+.shed-type-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.shed-type-title {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.shed-type-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.shed-type-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+  border-top: 1px border-subtle var(--border);
+  padding-top: 12px;
+}
+
+.shed-type-features li {
+  font-size: 0.85rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.shed-type-features li::before {
+  content: "✓";
+  color: var(--amber);
+  font-weight: bold;
+}
+
+/* ============================================
+   SECTION 2: BEFORE & AFTER TRANSFORMATIONS
+============================================ */
+.transformations-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 32px;
+}
+
+.ba-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .ba-card { grid-template-columns: 1fr; }
+}
+
+.ba-images-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ba-img-box {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  height: 220px;
+}
+
+.ba-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.ba-img-box:hover img {
+  transform: scale(1.03);
+}
+
+.ba-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.ba-badge.before { background: rgba(0,0,0,0.7); color: #fff; }
+.ba-badge.after { background: var(--amber); color: #fff; }
+
+.ba-details h3 {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.ba-location {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+
+.ba-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* ============================================
+   SECTION 3: SERVICE AREAS & PROJECT MAP
+============================================ */
+.map-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+  margin-top: 32px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+@media (max-width: 900px) {
+  .map-layout { grid-template-columns: 1fr; }
+}
+
+.towns-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.state-group {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.state-header {
+  background: var(--bg-alt);
+  padding: 12px 16px;
+  font-weight: 600;
+  color: var(--green);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.towns-list {
+  padding: 12px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  background: var(--white);
+}
+
+.town-chip {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border-radius: 100px;
+  color: var(--text);
+  transition: all 0.2s ease;
+}
+
+.town-chip:hover {
+  background: var(--green);
+  color: var(--white);
+  border-color: var(--green);
+}
+
+.map-container-mock {
+  position: relative;
+  min-height: 380px;
+  background: var(--bg-alt);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.map-container-mock iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  border: 0;
+}
+
+/* ============================================
+   1. GLOBAL SMOOTH SCROLL & SELECTION
+============================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--amber);
+  color: #fff;
+}
+
+/* ============================================
+   2. ADVANCE SCROLL REVEAL ANIMATIONS
+============================================ */
+/* Scroll karne par elements ka fade-in aur scale effect */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger delay for cards inside grid */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ============================================
+   3. MODERN BUTTON HOVER EFFECTS (Ripple / Shine)
+============================================ */
+.btn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Button Shine Effect */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.6s ease;
+  z-index: 2;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+/* ============================================
+   4. CARD INTERACTIVE HOVER & TILT EFFECTS
+============================================ */
+/* Shed Type Cards, Project Cards, aur BA Cards par smooth lift */
+.shed-type-card, .project-card, .ba-card, .quick-quote-card {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: transform, box-shadow;
+}
+
+.shed-type-card:hover, .project-card:hover, .ba-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 35px rgba(26, 46, 31, 0.12) !important;
+  border-color: var(--amber) !important;
+}
+
+/* Image Zoom on Hover */
+.shed-type-img-wrapper img, .project-card img, .ba-img-box img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.shed-type-card:hover .shed-type-img-wrapper img,
+.project-card:hover img,
+.ba-img-box:hover img {
+  transform: scale(1.08);
+}
+
+/* ============================================
+   5. INTERACTIVE TOWN CHIPS & BADGES
+============================================ */
+.town-chip, .stag, .shed-type-tag {
+  transition: all 0.3s ease !important;
+}
+
+.town-chip:hover {
+  background: var(--amber) !important;
+  color: #fff !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 10px rgba(200, 134, 26, 0.3);
+}
+
+.stag:hover {
+  background: var(--amber) !important;
+  border-color: var(--amber) !important;
+  color: #fff !important;
+  transform: scale(1.05);
+}
+
+/* ============================================
+   6. HEADER NAVBAR SCROLL EFFECT
+============================================ */
+header {
+  transition: all 0.4s ease !important;
+}
+
+header.scrolled {
+  background: rgba(26, 46, 31, 0.95) !important;
+  backdrop-filter: blur(12px);
+  padding: 12px 0 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   7. PULSE & FLOATING ANIMATIONS
+============================================ */
+/* Hero badge floating animation */
+@keyframes floatAnim {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+.hero-service-tags .stag:last-child {
+  animation: floatAnim 3s ease-in-out infinite;
+}
+
+/* Glowing Border Pulse for Call-to-Actions */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(200, 134, 26, 0.5); }
+  70% { box-shadow: 0 0 0 12px rgba(200, 134, 26, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(200, 134, 26, 0); }
+}
+
+.btn-amber {
+  animation: pulseGlow 2.5s infinite;
+}
+/* ============================================
+   1. FAST GPU-ACCELERATED SCROLL REVEALS
+============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.97);
+  will-change: transform, opacity;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger Delay for Cards Grid */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+
+/* ============================================
+   2. SHINE & GLOW HOVER EFFECTS (LIGHTWEIGHT)
+============================================ */
+/* Buttons Glow & Ripple Effect */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  will-change: transform;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.35);
+  transform: rotate(30deg);
+  transition: transform 0.6s ease;
+}
+
+.btn:hover::after {
+  transform: translate(600px, 0) rotate(30deg);
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(200, 134, 26, 0.25) !important;
+}
+
+/* ============================================
+   3. 3D CARD TILT & IMAGE ZOOM ON HOVER
+============================================ */
+.shed-type-card, .ba-card, .project-card, .quick-quote-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.35s ease !important;
+  will-change: transform;
+}
+
+.shed-type-card:hover, .ba-card:hover, .project-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(26, 46, 31, 0.15) !important;
+  border-color: var(--amber) !important;
+}
+
+/* Image Scale Up inside Cards */
+.shed-type-img-wrapper img, .ba-img-box img, .project-card img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: transform;
+}
+
+.shed-type-card:hover .shed-type-img-wrapper img,
+.ba-img-box:hover img,
+.project-card:hover img {
+  transform: scale(1.08);
+}
+
+/* ============================================
+   4. FLOATING BADGES & PULSE ANIMATIONS
+============================================ */
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(200, 134, 26, 0.4); }
+  70% { box-shadow: 0 0 0 14px rgba(200, 134, 26, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(200, 134, 26, 0); }
+}
+
+/* Floating Badges */
+.hero-service-tags .stag:last-child, .shed-type-tag {
+  animation: floatSoft 3s ease-in-out infinite;
+}
+
+/* Primary CTA Button Pulse */
+.btn-amber {
+  animation: pulseGlow 2.5s infinite;
+}
+
+/* ============================================
+   5. CHIPS & ACCORDION SMOOTH HOVER
+============================================ */
+.town-chip {
+  transition: all 0.25s ease !important;
+}
+
+.town-chip:hover {
+  background: var(--amber) !important;
+  color: #fff !important;
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 4px 12px rgba(200, 134, 26, 0.3);
+}
+
+/* Header Shrink on Scroll */
+header {
+  transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+header.scrolled {
+  background: rgba(26, 46, 31, 0.95) !important;
+  backdrop-filter: blur(10px);
+  padding: 10px 0 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
   </style>
 </head>
 <body>
@@ -1738,8 +2313,10 @@
     </div>
   </div>
 
+  
   <div class="qq-body" id="qq-body">
 
+    
     <!-- STEP 1 -->
     <div class="qq-step active" id="qstep-1" style="display:contents;">
       <div class="qq-field">
@@ -1782,6 +2359,70 @@
 
   </div>
 </div>
+
+<section id="shed-types" class="section reveal">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="sub-heading">Custom Designs</span>
+      <h2 class="section-title">Shed Types &amp; Architectural Styles</h2>
+      <p class="section-subtitle">Every shed is stick-built on-site to perfectly match your home's aesthetic and function.</p>
+    </div>
+
+    <div class="shed-types-grid">
+      <div class="shed-type-card">
+        <div class="shed-type-img-wrapper">
+          <span class="shed-type-tag">Most Popular</span>
+          <img src="https://rondavelsheds.com/wp-content/uploads/2025/07/20250516_085733-1024x1024.jpg" alt="Modern Studio Shed">
+        </div>
+        <div class="shed-type-body">
+          <h3 class="shed-type-title">Modern Studio &amp; Office</h3>
+          <p class="shed-type-desc">Designed for remote work, creative art studios, or quiet backyard retreats with high natural light.</p>
+          <ul class="shed-type-features">
+            <li>Insulated walls &amp; double-pane glass</li>
+            <li>Custom clerestory window options</li>
+            <li>Finished interior electrical wiring ready</li>
+          </ul>
+          <a href="#quick-quote" class="btn btn-outline" style="width: 100%; text-align: center;">Customize This Style</a>
+        </div>
+      </div>
+
+      <div class="shed-type-card">
+        <div class="shed-type-img-wrapper">
+          <span class="shed-type-tag">Traditional</span>
+          <img src="https://images.unsplash.com/photo-1590725140246-20acdee442be?auto=format&fit=crop&w=800&q=80" alt="Classic Storage Shed">
+        </div>
+        <div class="shed-type-body">
+          <h3 class="shed-type-title">Classic Storage Shed</h3>
+          <p class="shed-type-desc">Heavy-duty storage solutions engineered for riding mowers, outdoor tools, and seasonal gear.</p>
+          <ul class="shed-type-features">
+            <li>Reinforced pressure-treated flooring</li>
+            <li>Double-wide swing barn doors</li>
+            <li>Architectural asphalt shingles</li>
+          </ul>
+          <a href="#quick-quote" class="btn btn-outline" style="width: 100%; text-align: center;">Customize This Style</a>
+        </div>
+      </div>
+
+      <div class="shed-type-card">
+        <div class="shed-type-img-wrapper">
+          <span class="shed-type-tag">Heavy Duty</span>
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Craftsman Workshop">
+        </div>
+        <div class="shed-type-body">
+          <h3 class="shed-type-title">Craftsman Workshop</h3>
+          <p class="shed-type-desc">Spacious high-ceiling layouts equipped for woodworking, hobbyists, or heavy machinery storage.</p>
+          <ul class="shed-type-features">
+            <li>Integrated workbench framing</li>
+            <li>Higher pitch roof for overhead storage</li>
+            <li>Impact-resistant siding options</li>
+          </ul>
+          <a href="#quick-quote" class="btn btn-outline" style="width: 100%; text-align: center;">Customize This Style</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 <!-- =====================================================
@@ -1834,6 +2475,55 @@
   </div>
 </section>
 
+<section id="transformations" class="section section-alt animate-fade-up">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="sub-heading">Real On-Site Progress</span>
+      <h2 class="section-title">Before &amp; After Transformations</h2>
+      <p class="section-subtitle">See how we transform empty backyards and tight spaces into beautiful functional structures in just 2-3 days.</p>
+    </div>
+
+    <div class="transformations-container">
+      <div class="ba-card">
+        <div class="ba-images-grid">
+          <div class="ba-img-box">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Empty Yard Before Build">
+            <span class="ba-badge before">Before</span>
+          </div>
+          <div class="ba-img-box">
+            <img src="https://rondavelsheds.com/wp-content/uploads/2025/07/20250516_085733-1024x1024.jpg" alt="Finished On-Site Shed">
+            <span class="ba-badge after">After</span>
+          </div>
+        </div>
+        <div class="ba-details">
+          <span class="ba-location">📍 Newport, RI</span>
+          <h3>10' x 14' Backyard Office Studio</h3>
+          <p class="ba-desc">The homeowner had zero rear yard vehicle access due to close property line fences. Our team hand-carried raw lumber components and framed this custom office on-site in 48 hours.</p>
+          <a href="#" onclick="openModal(event)" class="btn btn-amber-sm">Request Similar Build</a>
+        </div>
+      </div>
+
+      <div class="ba-card">
+        <div class="ba-images-grid">
+          <div class="ba-img-box">
+            <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=80" alt="Overgrown Area Before">
+            <span class="ba-badge before">Before</span>
+          </div>
+          <div class="ba-img-box">
+            <img src="https://images.unsplash.com/photo-1590725140246-20acdee442be?auto=format&fit=crop&w=600&q=80" alt="Completed Storage Shed">
+            <span class="ba-badge after">After</span>
+          </div>
+        </div>
+        <div class="ba-details">
+          <span class="ba-location">📍 Warwick, RI</span>
+          <h3>12' x 16' Deluxe Storage Workshop</h3>
+          <p class="ba-desc">Replaced an old rotting metal shed with a hand-built heavy-duty wooden workshop featuring double doors, ramps, and custom trim matching the main house.</p>
+          <a href="#" onclick="openModal(event)" class="btn btn-amber-sm">Request Similar Build</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- =====================================================
      SHED TYPES
@@ -2059,6 +2749,70 @@
   </div>
 </section>
 
+<section id="service-areas" class="section animate-fade-up">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="sub-heading">Coverage &amp; Locations</span>
+      <h2 class="section-title">Service Areas &amp; Completed Projects</h2>
+      <p class="section-subtitle">We construct custom sheds throughout Rhode Island, Southeastern Massachusetts, and Eastern Connecticut.</p>
+    </div>
+
+    <div class="map-layout">
+      <div class="towns-accordion">
+        <div class="state-group">
+          <div class="state-header">
+            <span>Rhode Island (Primary)</span>
+            <small>100+ Builds</small>
+          </div>
+          <div class="towns-list">
+            <span class="town-chip">Providence</span>
+            <span class="town-chip">Warwick</span>
+            <span class="town-chip">Newport</span>
+            <span class="town-chip">Cranston</span>
+            <span class="town-chip">South Kingstown</span>
+            <span class="town-chip">Narragansett</span>
+            <span class="town-chip">Barrington</span>
+          </div>
+        </div>
+
+        <div class="state-group">
+          <div class="state-header">
+            <span>Southeastern Massachusetts</span>
+            <small>45+ Builds</small>
+          </div>
+          <div class="towns-list">
+            <span class="town-chip">Attleboro</span>
+            <span class="town-chip">Fall River</span>
+            <span class="town-chip">New Bedford</span>
+            <span class="town-chip">Seekonk</span>
+            <span class="town-chip">Dartmouth</span>
+          </div>
+        </div>
+
+        <div class="state-group">
+          <div class="state-header">
+            <span>Eastern Connecticut</span>
+            <small>30+ Builds</small>
+          </div>
+          <div class="towns-list">
+            <span class="town-chip">Stonington</span>
+            <span class="town-chip">Mystic</span>
+            <span class="town-chip">Groton</span>
+            <span class="town-chip">Norwich</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-container-mock">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d380628.7885747683!2d-71.650000!3d41.600000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e445e0322d7d8d%3A0xb214f52636a048a1!2sRhode%20Island%2C%20USA!5e0!3m2!1sen!2s!4v1680000000000" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- =====================================================
      PRICING
@@ -2384,8 +3138,12 @@
 <script>
   // ── NAV scroll ──────────────────────────────────────
   const siteNav = document.getElementById('site-nav');
+  const header = document.querySelector('header');
+  
   window.addEventListener('scroll', () => {
-    siteNav.classList.toggle('scrolled', window.scrollY > 50);
+    const isScrolled = window.scrollY > 40;
+    if (siteNav) siteNav.classList.toggle('scrolled', isScrolled);
+    if (header) header.classList.toggle('scrolled', isScrolled);
   }, { passive: true });
 
   // ── Mobile nav ──────────────────────────────────────
@@ -2422,7 +3180,6 @@
       return;
     }
 
-    // In production: POST to your CRM / email handler
     const body = document.getElementById('qq-body');
     body.innerHTML = '<div class="qq-success" style="display:block;grid-column:1/-1;">Thanks, ' + town + '! We\'ll send your ' + style + ' (' + PRICES[size] + ' starting) estimate within 24 hours. Call <a href="tel:4013525522" style="color:var(--green-mid);font-weight:700;">(401) 352-5522</a> if you\'d rather talk now.</div>';
   }
@@ -2504,11 +3261,48 @@
       alert('Please fill in all contact fields.');
       return;
     }
-    // In production: POST to CRM / email handler
     document.getElementById('ms4').classList.remove('active');
     document.getElementById('modal-success').classList.add('show');
     setModalProgress(4);
   }
+
+  // ── HIGH-PERFORMANCE SCROLL REVEAL & ANIMATIONS ─────
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. Fast Intersection Observer for Scroll Reveals
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -60px 0px',
+      threshold: 0.1
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          if (entry.target.style.animationPlayState !== undefined) {
+            entry.target.style.animationPlayState = 'running';
+          }
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal, .animate-fade-up').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // 2. Parallax Effect on Hero (Lightweight)
+    const hero = document.getElementById('hero');
+    if (hero && window.innerWidth > 768) {
+      hero.addEventListener('mousemove', (e) => {
+        const moveX = (e.clientX - window.innerWidth / 2) * 0.008;
+        const moveY = (e.clientY - window.innerHeight / 2) * 0.008;
+        hero.style.backgroundPosition = `calc(50% + ${moveX}px) calc(50% + ${moveY}px)`;
+      }, { passive: true });
+    }
+
+  });
 </script>
 </body>
 </html>
