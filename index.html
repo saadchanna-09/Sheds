@@ -1,0 +1,2514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rondavel Sheds — Custom Built On-Site in New England</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+
+    /* ============================================
+       TOKENS — edit these to retheme the whole page
+    ============================================ */
+    :root {
+      --green:        #1A2E1F;
+      --green-mid:    #2C4A35;
+      --green-light:  #3D6647;
+      --amber:        #C8861A;
+      --amber-soft:   #E8A83A;
+      --bg:           #F9F7F3;
+      --bg-alt:       #EEE9E0;
+      --text:         #282828;
+      --text-muted:   #666;
+      --white:        #fff;
+      --border:       #D8D2C6;
+
+      --serif:  'DM Serif Display', Georgia, serif;
+      --sans:   'DM Sans', system-ui, sans-serif;
+
+      --radius-sm: 4px;
+      --radius-md: 8px;
+
+      --shadow-card: 0 2px 12px rgba(0,0,0,0.08);
+      --shadow-lift: 0 8px 32px rgba(0,0,0,0.13);
+    }
+
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button { font-family: var(--sans); cursor: pointer; }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ============================================
+       NAV
+    ============================================ */
+    #site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      transition: background 0.25s, box-shadow 0.25s;
+    }
+
+    #site-nav.scrolled {
+      background: var(--green);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 28px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 38px;
+      height: 38px;
+      background: var(--amber);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-mark svg { color: #fff; }
+
+    .nav-logo-text {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .nav-logo-text small {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #fff; }
+
+    .nav-cta {
+      background: var(--amber);
+      color: #fff !important;
+      padding: 10px 22px;
+      border-radius: var(--radius-sm);
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--amber-soft) !important; }
+
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      padding: 4px;
+    }
+
+    /* Mobile nav overlay */
+    #mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: var(--green);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+
+    #mobile-nav.open { display: flex; }
+
+    #mobile-nav a {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    #mobile-nav .m-cta {
+      font-family: var(--sans);
+      font-size: 1rem;
+      background: var(--amber);
+      padding: 14px 40px;
+      border-radius: var(--radius-sm);
+    }
+
+    .mobile-close {
+      position: absolute;
+      top: 22px; right: 26px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* ============================================
+       HERO
+    ============================================ */
+   /* ============================================
+   HERO — Full Background Overlay Style
+============================================ */
+/* ============================================
+   HERO — Lighter Overlay & Zoomed-Out Background
+============================================ */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  
+  /* Lighter Green Linear Gradient Overlay */
+  background-image: 
+    linear-gradient(
+      180deg,
+      rgba(26, 46, 31, 0.35) 0%,   /* Reduced top opacity from 0.75 to 0.35 */
+      rgba(26, 46, 31, 0.55) 100%  /* Reduced bottom opacity from 0.88 to 0.55 */
+    ),
+    url('https://i.pinimg.com/1200x/94/0b/95/940b95340001b25fb70a94485d662031.jpg');
+  
+  /* Zoom & Background Position */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: auto 170%; /* Adjust size for zoom level */
+  
+  padding: 140px 0 100px;
+}
+
+.hero-content-wrapper {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 28px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.stag {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 100px;
+  backdrop-filter: blur(4px);
+}
+
+.hero-headline {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+  max-width: 22ch;
+}
+
+.hero-headline em {
+  font-style: italic;
+  color: var(--amber-soft);
+}
+
+.hero-sub {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 58ch;
+  margin-bottom: 36px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.hero-configurator {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  text-decoration: none;
+  border: 1.5px dashed rgba(255, 255, 255, 0.35);
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.hero-configurator:hover {
+  color: #fff;
+  border-color: var(--amber-soft);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.hero-trust {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding: 16px 28px;
+  flex-wrap: wrap;
+}
+    .hero-service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .stag {
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+
+    .hero-headline {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 4.5vw, 4rem);
+      color: #fff;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 22px;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--amber-soft);
+    }
+
+    .hero-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 42ch;
+      margin-bottom: 38px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 52px;
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      transition: transform 0.15s, background 0.2s, border-color 0.2s;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-amber {
+      background: var(--amber);
+      color: #fff;
+    }
+
+    .btn-amber:hover { background: var(--amber-soft); }
+
+    .btn-ghost {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.35);
+    }
+
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.7); }
+
+    .btn-green {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .btn-green:hover { background: var(--green-mid); }
+
+    .btn-outline-green {
+      background: transparent;
+      color: var(--green);
+      border: 1.5px solid var(--green);
+    }
+
+    .btn-outline-green:hover { background: var(--green); color: #fff; }
+
+    /* configurator placeholder */
+    .hero-configurator {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.82rem;
+      text-decoration: none;
+      border: 1.5px dashed rgba(255,255,255,0.2);
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .hero-configurator:hover {
+      color: rgba(255,255,255,0.7);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .coming-pill {
+      background: var(--amber);
+      color: #fff;
+      font-size: 0.58rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Hero trust row */
+    .hero-trust {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      gap: 24px;
+      padding: 18px 56px;
+      flex-wrap: wrap;
+    }
+
+    .hero-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.78rem;
+    }
+
+    .hero-trust-item svg { color: var(--amber-soft); flex-shrink: 0; }
+
+    /* ============================================
+       QUICK-QUOTE WIDGET
+       (floats at bottom of hero on desktop,
+        stacks below hero on mobile)
+    ============================================ */
+    #quick-quote {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lift);
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+      /* On desktop, pull up over the section boundary */
+      margin: 79px 78px 0;
+      max-width: 1104px;
+      margin-left: auto;
+      margin-right: auto;
+      transform: translateY(-48px);
+    }
+
+    .qq-header {
+      background: var(--green-mid);
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .qq-header h3 {
+      font-family: var(--serif);
+      color: #fff;
+      font-size: 1.2rem;
+    }
+
+    .qq-header p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.82rem;
+    }
+
+    .qq-steps-indicator {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .qq-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      transition: background 0.2s, width 0.2s;
+    }
+
+    .qq-dot.active {
+      background: var(--amber);
+      width: 22px;
+      border-radius: 4px;
+    }
+
+    .qq-body {
+      padding: 28px 32px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      gap: 20px;
+      align-items: end;
+    }
+
+    .qq-step { display: none; }
+    .qq-step.active { display: contents; }
+
+    .qq-field { display: flex; flex-direction: column; gap: 7px; }
+
+    .qq-field label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .qq-field select,
+    .qq-field input {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 11px 14px;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+    }
+
+    .qq-field input {
+      background-image: none;
+    }
+
+    .qq-field select:focus,
+    .qq-field input:focus { border-color: var(--green-light); }
+
+    .qq-submit-btn {
+      background: var(--amber);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 12px 28px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background 0.2s;
+      align-self: end;
+    }
+
+    .qq-submit-btn:hover { background: var(--amber-soft); }
+
+    .qq-price-hint {
+      font-size: 0.75rem;
+      color: var(--green-mid);
+      font-weight: 600;
+      display: none;
+      margin-top: 4px;
+    }
+
+    .qq-success {
+      display: none;
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 16px;
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    /* ============================================
+       HOW IT WORKS
+    ============================================ */
+    #how-it-works {
+      padding: 100px 0 90px;
+    }
+
+    #how-it-works .section-intro {
+      max-width: 520px;
+      margin-bottom: 60px;
+    }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+      color: var(--green);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .section-body {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* Steps: horizontal timeline, not floating circle numbers */
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      position: relative;
+    }
+
+    /* connecting line between steps */
+    .steps-row::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(25% / 2);
+      right: calc(25% / 2);
+      height: 2px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .step {
+      padding: 0 20px 0 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-marker {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--bg-alt);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-marker svg { color: var(--green); }
+
+    .step:first-child .step-marker { background: var(--green); border-color: var(--green); }
+    .step:first-child .step-marker svg { color: #fff; }
+
+    .step-num {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 20px;
+      height: 20px;
+      background: var(--amber);
+      border-radius: 50%;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step h3 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--green);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .step p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ============================================
+       SHED TYPES
+    ============================================ */
+    #shed-types {
+      background: var(--bg-alt);
+      padding: 90px 0;
+    }
+
+    .shed-types-intro {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 52px;
+    }
+
+    .shed-types-intro .section-heading { margin-bottom: 0; }
+
+    .sheds-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .shed-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .shed-card:hover {
+      box-shadow: var(--shadow-lift);
+      transform: translateY(-3px);
+    }
+
+    .shed-card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+
+    .shed-card-body {
+      padding: 24px;
+    }
+
+    .shed-style-tag {
+      display: inline-block;
+      background: var(--bg-alt);
+      color: var(--green-mid);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+
+    .shed-card-body h3 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .shed-card-body p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .shed-link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--green-light);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap 0.18s;
+    }
+
+    .shed-link:hover { gap: 9px; }
+
+    /* ============================================
+       GALLERY + FILTER
+    ============================================ */
+    #gallery {
+      padding: 90px 0;
+    }
+
+    .gallery-intro {
+      margin-bottom: 36px;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .filter-btn {
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: var(--sans);
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, border-color 0.18s;
+    }
+
+    .filter-btn:hover { border-color: var(--green); color: var(--green); }
+
+    .filter-btn.active {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: var(--bg-alt);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s;
+    }
+
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    .gallery-item-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(26,46,31,0.88) 0%, transparent 100%);
+      padding: 28px 16px 14px;
+    }
+
+    .gallery-town {
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .gallery-town svg { color: var(--amber-soft); }
+
+    .gallery-shed-type {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.72rem;
+      margin-top: 3px;
+    }
+
+    /* ============================================
+       BUILD PROGRESS — BEFORE/AFTER CONCEPT
+    ============================================ */
+    #build-story {
+      background: var(--green);
+      padding: 90px 0;
+    }
+
+    .build-story-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    #build-story .section-heading { color: #fff; margin-bottom: 16px; }
+    #build-story .section-body { color: rgba(255,255,255,0.6); margin-bottom: 36px; }
+
+    .build-stages {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .build-stage {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .build-stage:last-child { border-bottom: none; }
+
+    .build-stage:not(.active) { opacity: 0.45; }
+    .build-stage:hover { opacity: 0.8; }
+    .build-stage.active { opacity: 1; }
+
+    .stage-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(255,255,255,0.08);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+
+    .build-stage.active .stage-icon { background: var(--amber); }
+    .stage-icon svg { color: #fff; }
+
+    .stage-text h4 {
+      font-family: var(--serif);
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .stage-text p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.55;
+    }
+
+    /* right: stacked image viewer */
+    .build-viewer {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: var(--green-mid);
+    }
+
+    .build-viewer-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .build-viewer-img.shown { opacity: 1; }
+
+    .build-viewer-label {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* ============================================
+       PRICING SECTION
+    ============================================ */
+    #pricing {
+      padding: 90px 0;
+    }
+
+    .pricing-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 72px;
+      margin-top: 52px;
+      align-items: start;
+    }
+
+    /* Price table */
+    .price-table-wrap {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .price-table thead th {
+      background: var(--green);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-align: left;
+      padding: 13px 18px;
+      letter-spacing: 0.04em;
+    }
+
+    .price-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .price-table tbody tr:last-child { border-bottom: none; }
+    .price-table tbody tr:hover { background: var(--bg-alt); }
+
+    .price-table td {
+      padding: 13px 18px;
+      font-size: 0.875rem;
+      color: var(--text);
+    }
+
+    .price-table td:last-child {
+      font-weight: 700;
+      color: var(--green);
+      text-align: right;
+    }
+
+    .price-table-note {
+      padding: 14px 18px;
+      background: var(--bg-alt);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Right side — what's included + upgrades */
+    .pricing-side h3 {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      color: var(--green);
+      margin-bottom: 18px;
+    }
+
+    .included-list {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+
+    .included-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--text);
+    }
+
+    .included-list li:last-child { border-bottom: none; }
+
+    .check-mark {
+      color: var(--green-light);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .upgrade-box {
+      background: var(--bg-alt);
+      border-left: 3px solid var(--amber);
+      padding: 16px 20px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 24px;
+    }
+
+    .upgrade-box strong {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--green);
+      margin-bottom: 5px;
+    }
+
+    .upgrade-box p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .financing-note {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    .financing-note a {
+      color: var(--green-mid);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .financing-note a:hover { text-decoration: underline; }
+
+    /* ============================================
+       SERVICE AREA
+    ============================================ */
+    #service-area {
+      background: var(--bg-alt);
+      padding: 90px 0;
+    }
+
+    .service-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      margin-top: 52px;
+      align-items: start;
+    }
+
+    .state-list { display: flex; flex-direction: column; gap: 14px; }
+
+    .state-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 22px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      border: 1.5px solid transparent;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .state-card:hover {
+      border-color: var(--green-light);
+      box-shadow: var(--shadow-card);
+    }
+
+    .state-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--bg-alt);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.4rem;
+    }
+
+    .state-info h4 {
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+    }
+
+    .state-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* contact card */
+    .contact-card {
+      background: var(--green);
+      border-radius: var(--radius-md);
+      padding: 28px;
+    }
+
+    .contact-card h4 {
+      font-family: var(--serif);
+      color: #fff;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .contact-item:last-child { margin-bottom: 0; }
+
+    .contact-item svg { color: var(--amber-soft); flex-shrink: 0; }
+
+    .contact-item a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .contact-item a:hover { color: var(--amber-soft); }
+
+    /* ============================================
+       CTA BAND
+    ============================================ */
+    #cta-band {
+      background: var(--amber);
+      padding: 80px 0;
+    }
+
+    .cta-band-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .cta-band-inner h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: #fff;
+      line-height: 1.2;
+      max-width: 520px;
+    }
+
+    .cta-band-inner h2 small {
+      display: block;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.75);
+      margin-top: 8px;
+    }
+
+    .btn-white {
+      background: #fff;
+      color: var(--amber);
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 15px 36px;
+      border-radius: var(--radius-sm);
+      border: none;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: inline-block;
+    }
+
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+
+    /* ============================================
+       QUOTE MODAL
+    ============================================ */
+    #modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.55);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    #modal-bg.open { display: flex; }
+
+    .modal {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      max-width: 520px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .modal-top {
+      background: var(--green);
+      padding: 32px 36px 28px;
+    }
+
+    .modal-top h2 {
+      font-family: var(--serif);
+      color: #fff;
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .modal-top p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+    }
+
+    .modal-progress-bar {
+      display: flex;
+      gap: 3px;
+      margin-top: 20px;
+    }
+
+    .mpbar {
+      height: 3px;
+      flex: 1;
+      background: rgba(255,255,255,0.15);
+      border-radius: 2px;
+      transition: background 0.3s;
+    }
+
+    .mpbar.filled { background: var(--amber); }
+
+    .modal-body {
+      padding: 28px 36px;
+    }
+
+    .form-field {
+      margin-bottom: 18px;
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-color: var(--green-light); }
+
+    .choice-set {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .choice-tile {
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s;
+      background: var(--white);
+    }
+
+    .choice-tile:hover { border-color: var(--green-light); }
+    .choice-tile.sel { border-color: var(--green); background: #f0f4f1; }
+
+    .choice-tile span:first-child { font-size: 1.5rem; display: block; margin-bottom: 5px; }
+    .choice-tile span:last-child { font-size: 0.78rem; font-weight: 600; color: var(--text); }
+
+    .modal-step-inner { display: none; }
+    .modal-step-inner.active { display: block; }
+
+    .modal-foot {
+      display: flex;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .modal-btn-next {
+      flex: 1;
+      padding: 13px;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .modal-btn-next:hover { background: var(--green-mid); }
+    .modal-btn-next.amber-btn { background: var(--amber); }
+    .modal-btn-next.amber-btn:hover { background: var(--amber-soft); }
+
+    .modal-btn-back {
+      padding: 13px 20px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .modal-btn-back:hover { border-color: var(--text-muted); }
+
+    .modal-success {
+      display: none;
+      text-align: center;
+      padding: 32px 20px;
+    }
+
+    .modal-success.show { display: block; }
+    .modal-success .s-emoji { font-size: 3rem; margin-bottom: 16px; }
+
+    .modal-success h3 {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .modal-success p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .modal-success a { color: var(--green-mid); font-weight: 600; }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      background: var(--green);
+      padding: 64px 0 28px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 52px;
+    }
+
+    .footer-brand .brand-name {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .footer-brand .brand-name span { color: var(--amber-soft); }
+
+    .footer-brand p {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.82rem;
+      line-height: 1.7;
+      max-width: 28ch;
+      margin-bottom: 20px;
+    }
+
+    .footer-contact-list { list-style: none; }
+
+    .footer-contact-list li {
+      margin-bottom: 8px;
+    }
+
+    .footer-contact-list a {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-contact-list a:hover { color: #fff; }
+
+    .footer-col h5 {
+      color: rgba(255,255,255,0.35);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col li { margin-bottom: 9px; }
+
+    .footer-col a {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: #fff; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.09);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p, .footer-bottom a {
+      color: rgba(255,255,255,0.3);
+      font-size: 0.78rem;
+      text-decoration: none;
+    }
+
+    .footer-bottom a:hover { color: rgba(255,255,255,0.6); }
+
+    .footer-links { display: flex; gap: 20px; }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 1024px) {
+      #hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-img-side {
+        min-height: 55vh;
+      }
+
+      .hero-content-side {
+        padding: 60px 40px 120px;
+      }
+
+      .hero-trust { padding: 18px 40px; }
+
+      #quick-quote { transform: none; margin-top: -1px; }
+      .qq-body { grid-template-columns: 1fr 1fr; }
+
+      .steps-row { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .steps-row::before { display: none; }
+
+      .sheds-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .build-story-inner { grid-template-columns: 1fr; gap: 40px; }
+
+      .pricing-layout { grid-template-columns: 1fr; }
+
+      .service-layout { grid-template-columns: 1fr; }
+
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+
+      .hero-content-side { padding: 50px 24px 100px; }
+      .hero-trust { padding: 14px 24px; gap: 14px; }
+      .hero-headline { font-size: 2.4rem; }
+
+      .qq-body { grid-template-columns: 1fr; gap: 14px; }
+
+      .steps-row { grid-template-columns: 1fr; }
+
+      .sheds-grid { grid-template-columns: 1fr; }
+
+      .gallery-grid { grid-template-columns: 1fr; }
+
+      .pricing-layout { grid-template-columns: 1fr; gap: 40px; }
+
+      .shed-types-intro { flex-direction: column; align-items: flex-start; }
+
+      .footer-grid { grid-template-columns: 1fr; }
+
+      .cta-band-inner { flex-direction: column; text-align: center; }
+
+      .modal-body { padding: 24px; }
+      .modal-top { padding: 28px 24px 24px; }
+      .choice-set { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- =====================================================
+     NAV
+===================================================== -->
+<nav id="site-nav">
+  <div class="nav-wrap">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">
+        Rondavel Sheds
+        <small>Rhode Island · MA · CT</small>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#shed-types">Shed Types</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#service-area">Service Area</a></li>
+      <li><a href="#" class="nav-cta" onclick="openModal(event)">Get a Quote</a></li>
+    </ul>
+
+    <button class="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<nav id="mobile-nav">
+  <button class="mobile-close" onclick="toggleMobileNav()">✕</button>
+  <a href="#shed-types" onclick="toggleMobileNav()">Shed Types</a>
+  <a href="#gallery" onclick="toggleMobileNav()">Gallery</a>
+  <a href="#pricing" onclick="toggleMobileNav()">Pricing</a>
+  <a href="#service-area" onclick="toggleMobileNav()">Service Area</a>
+  <a href="#" class="m-cta" onclick="openModal(event); toggleMobileNav()">Get a Free Quote</a>
+</nav>
+
+
+<!-- =====================================================
+     HERO
+     Left half = your shed photo.
+     Right half = headline + widget.
+
+     HOW TO SWAP THE HERO IMAGE:
+     Find the <img id="hero-img"> tag below and replace
+     its src="" value with the path to your photo.
+     Works with local files or a URL.
+     Recommended size: at least 1000×900px, portrait crop.
+===================================================== -->
+<section id="hero">
+  <div class="hero-content-wrapper">
+    
+    <div class="hero-service-tags">
+      <span class="stag">📍 Rhode Island</span>
+      <span class="stag">📍 Southeastern MA</span>
+      <span class="stag">📍 Eastern CT</span>
+      <span class="stag" style="background: var(--amber); color: #fff; border: none;">🔨 100% Built On-Site</span>
+    </div>
+
+    <h1 class="hero-headline">
+      Custom Sheds &amp; Studios, <em>Built Right in Your Backyard.</em>
+    </h1>
+
+    <p class="hero-sub">
+      No cranes, no tight yard issues, no damaged fence posts. We frame and construct high-quality, weather-resistant sheds directly on location across New England.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#" class="btn btn-amber" onclick="openModal(event)">Get an Instant Quote</a>
+      <a href="#gallery" class="btn btn-ghost">View Recent Builds</a>
+    </div>
+
+    <a href="#" class="hero-configurator" onclick="openModal(event)">
+      <span>🎨 Interactive 3D Shed Builder</span>
+      <span class="coming-pill">COMING SOON</span>
+    </a>
+
+  </div>
+
+  <div class="hero-trust">
+    <span class="hero-trust-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> Licensed &amp; Insured
+    </span>
+    <span class="hero-trust-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Quotes in 24 hrs
+    </span>
+    <span class="hero-trust-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Financing Available
+    </span>
+    <span class="hero-trust-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> 2–3 Day Construction
+    </span>
+  </div>
+</section>
+
+<!-- =====================================================
+     QUICK QUOTE ESTIMATOR
+===================================================== -->
+<div id="quick-quote">
+  <div class="qq-header">
+    <div>
+      <h3>Quick Estimate</h3>
+      <p>Select style and size to see a starting price — no commitment.</p>
+    </div>
+    <div class="qq-steps-indicator">
+      <div class="qq-dot active" id="qdot-1"></div>
+      <div class="qq-dot" id="qdot-2"></div>
+      <div class="qq-dot" id="qdot-3"></div>
+    </div>
+  </div>
+
+  <div class="qq-body" id="qq-body">
+
+    <!-- STEP 1 -->
+    <div class="qq-step active" id="qstep-1" style="display:contents;">
+      <div class="qq-field">
+        <label for="q-style">Shed style</label>
+        <select id="q-style" onchange="qUpdateStyle(this)">
+          <option value="">Choose style…</option>
+          <option value="Gable">Gable (classic pitched roof)</option>
+          <option value="Lean-To">Lean-To (modern single slope)</option>
+          <option value="Gambrel">Gambrel (barn style)</option>
+        </select>
+      </div>
+
+      <div class="qq-field">
+        <label for="q-size">Approximate size</label>
+        <select id="q-size" onchange="qUpdateSize(this)">
+          <option value="">Choose size…</option>
+          <option value="3990">8′ × 8′ — $3,990</option>
+          <option value="4590">8′ × 10′ — $4,590</option>
+          <option value="4990">8′ × 12′ — $4,990</option>
+          <option value="5690">10′ × 10′ — $5,690</option>
+          <option value="6690">10′ × 12′ — $6,690</option>
+          <option value="7990">10′ × 16′ — $7,990</option>
+          <option value="8990">12′ × 16′ — $8,990</option>
+          <option value="9990">12′ × 20′ — $9,990</option>
+        </select>
+        <div class="qq-price-hint" id="q-price-hint">Starting from —</div>
+      </div>
+
+      <div class="qq-field">
+        <label for="q-town">Your town / zip</label>
+        <input type="text" id="q-town" placeholder="e.g. Warwick, RI">
+      </div>
+
+      <button class="qq-submit-btn" onclick="qStep1Submit()">Send Estimate Request</button>
+    </div>
+
+    <div class="qq-success" id="qq-success">
+      Thanks! We'll send your estimate within 24 hours. Call <a href="tel:4013525522" style="color:var(--green-mid);font-weight:700;">(401) 352-5522</a> if you'd rather talk now.
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="section-intro">
+      <h2 class="section-heading">From first message to finished shed — usually under a week.</h2>
+      <p class="section-body">No showroom, no back-and-forth. Fill out the form, get a quote, pick a day. Our crew shows up and builds it right there.</p>
+    </div>
+
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-marker">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          <span class="step-num">1</span>
+        </div>
+        <h3>Fill out the quote form</h3>
+        <p>Tell us your shed style, rough size, and where you're located. Takes under two minutes.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-marker">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+          <span class="step-num">2</span>
+        </div>
+        <h3>Get a custom quote in 24 hours</h3>
+        <p>Itemized — base price, upgrades, and any foundation costs. No surprises, ever.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-marker">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          <span class="step-num">3</span>
+        </div>
+        <h3>Questions? We answer them</h3>
+        <p>Call or text us at (401) 352-5522. We're builders, not a call center — we know our trade.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-marker">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span class="step-num">4</span>
+        </div>
+        <h3>Pick a build date and we show up</h3>
+        <p>Our crew arrives, frames your shed on-site over 2–3 days, and leaves your yard clean.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     SHED TYPES
+===================================================== -->
+<section id="shed-types">
+  <div class="container">
+    <div class="shed-types-intro">
+      <h2 class="section-heading">Three styles.<br>Endless configurations.</h2>
+      <a class="btn btn-outline-green" href="https://rondavelsheds.com/typesofsheds/" target="_blank" rel="noopener">View all styles</a>
+    </div>
+
+    <div class="sheds-grid">
+      <article class="shed-card">
+        <img class="shed-card-img"
+          src="https://rondavelsheds.com/wp-content/uploads/2025/07/20250516_085733-1024x1024.jpg"
+          alt="Classic Gable Shed built on-site in New England" loading="lazy">
+        <div class="shed-card-body">
+          <span class="shed-style-tag">Most Popular</span>
+          <h3>Gable Shed</h3>
+          <p>Classic pitched roof with a clean silhouette that fits almost any yard. Built for storage, workshops, or hobby space — and easy to customize inside and out.</p>
+          <a class="shed-link" href="https://rondavelsheds.com/shed-gallery/#gable" target="_blank" rel="noopener">
+            See Gable builds
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="shed-card">
+        <img class="shed-card-img"
+          src="https://rondavelsheds.com/wp-content/uploads/2025/07/20240720_193335-1-1024x1024.jpg"
+          alt="Lean-To Shed with single-slope modern roof" loading="lazy">
+        <div class="shed-card-body">
+          <span class="shed-style-tag">Modern &amp; Low-Profile</span>
+          <h3>Lean-To Shed</h3>
+          <p>A single-sloped roof that sits low and clean. Perfect for tight side yards, garden tools, or a quiet creative studio tucked into your backyard.</p>
+          <a class="shed-link" href="https://rondavelsheds.com/shed-gallery/#lean-to" target="_blank" rel="noopener">
+            See Lean-To builds
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="shed-card">
+        <img class="shed-card-img"
+          src="https://rondavelsheds.com/wp-content/uploads/2025/07/20250414_190107-1024x1024.jpg"
+          alt="Gambrel barn-style shed with extra headroom" loading="lazy">
+        <div class="shed-card-body">
+          <span class="shed-style-tag">Maximum Headroom</span>
+          <h3>Gambrel Shed</h3>
+          <p>Barn-style roofline that adds character and serious overhead room. Great for large equipment, a loft-style workshop, or anything that needs real vertical space.</p>
+          <a class="shed-link" href="https://rondavelsheds.com/shed-gallery/#gambrel" target="_blank" rel="noopener">
+            See Gambrel builds
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-intro">
+      <h2 class="section-heading">Recent builds across New England.</h2>
+      <p class="section-body">Every shed you see here was built on-site — hand-framed in someone's actual backyard.</p>
+    </div>
+
+    <div class="filter-bar" role="group" aria-label="Filter by state">
+      <button class="filter-btn active" onclick="filterGallery('all', this)">All Builds</button>
+      <button class="filter-btn" onclick="filterGallery('ri', this)">Rhode Island</button>
+      <button class="filter-btn" onclick="filterGallery('ma', this)">Massachusetts</button>
+      <button class="filter-btn" onclick="filterGallery('ct', this)">Connecticut</button>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="gallery-item" data-state="ri">
+        <img src="https://rondavelsheds.com/wp-content/uploads/2025/07/20250516_085733-1024x1024.jpg" alt="Gable shed in Newport, RI" loading="lazy">
+        <div class="gallery-item-label">
+          <div class="gallery-town">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+            Newport, RI
+          </div>
+          <div class="gallery-shed-type">Gable · 10×12</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-state="ri">
+        <img src="https://rondavelsheds.com/wp-content/uploads/2025/07/20250414_190107-1024x1024.jpg" alt="Gambrel shed in Warwick, RI" loading="lazy">
+        <div class="gallery-item-label">
+          <div class="gallery-town">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+            Warwick, RI
+          </div>
+          <div class="gallery-shed-type">Gambrel · 12×16</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-state="ri">
+        <img src="https://rondavelsheds.com/wp-content/uploads/2025/07/20240720_193335-1-1024x1024.jpg" alt="Lean-To shed in Providence, RI" loading="lazy">
+        <div class="gallery-item-label">
+          <div class="gallery-town">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+            Providence, RI
+          </div>
+          <div class="gallery-shed-type">Lean-To · 8×12</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-state="ma">
+        <img src="https://rondavelsheds.com/wp-content/uploads/2025/07/20250516_085733-1024x1024.jpg" alt="Gable shed in Attleboro, MA" loading="lazy">
+        <div class="gallery-item-label">
+          <div class="gallery-town">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+            Attleboro, MA
+          </div>
+          <div class="gallery-shed-type">Gable · 10×16</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-state="ma">
+        <img src="https://rondavelsheds.com/wp-content/uploads/2025/07/20250414_190107-1024x1024.jpg" alt="Gambrel shed in Fall River, MA" loading="lazy">
+        <div class="gallery-item-label">
+          <div class="gallery-town">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+            Fall River, MA
+          </div>
+          <div class="gallery-shed-type">Gambrel · 12×20</div>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-state="ct">
+        <img src="https://rondavelsheds.com/wp-content/uploads/2025/07/20240720_193335-1-1024x1024.jpg" alt="Lean-To shed in Killingly, CT" loading="lazy">
+        <div class="gallery-item-label">
+          <div class="gallery-town">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+            Killingly, CT
+          </div>
+          <div class="gallery-shed-type">Lean-To · 10×12</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     BUILD STORY / CONSTRUCTION PROGRESS
+===================================================== -->
+<section id="build-story">
+  <div class="container">
+    <div class="build-story-inner">
+
+      <!-- LEFT: stage list -->
+      <div>
+        <h2 class="section-heading">Built by hand.<br>Right in your yard.</h2>
+        <p class="section-body">No prefab panels trucked in. No crane. No removing your fence. Our crew frames everything from scratch, on your property, in two to three days.</p>
+
+        <div class="build-stages">
+          <div class="build-stage active" onclick="activateStage(this, 0)">
+            <div class="stage-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            </div>
+            <div class="stage-text">
+              <h4>Site preparation</h4>
+              <p>We level the ground, install gravel or block foundation — no heavy machinery required for tight yards.</p>
+            </div>
+          </div>
+
+          <div class="build-stage" onclick="activateStage(this, 1)">
+            <div class="stage-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div class="stage-text">
+              <h4>Floor &amp; wall framing</h4>
+              <p>Pressure-treated floor deck and wall frames built on-site with dimensional lumber.</p>
+            </div>
+          </div>
+
+          <div class="build-stage" onclick="activateStage(this, 2)">
+            <div class="stage-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>
+            </div>
+            <div class="stage-text">
+              <h4>Roof &amp; siding</h4>
+              <p>LP SmartSide siding and architectural shingles — material built for New England weather.</p>
+            </div>
+          </div>
+
+          <div class="build-stage" onclick="activateStage(this, 3)">
+            <div class="stage-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="stage-text">
+              <h4>Finished &amp; ready</h4>
+              <p>Doors, trim, windows, and any upgrades you chose. Yard cleaned up when we leave.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: image viewer -->
+      <div class="build-viewer" id="build-viewer">
+        <img class="build-viewer-img shown" id="bimg-0"
+          src="https://rondavelsheds.com/wp-content/uploads/2025/07/ChatGPT-Image-Jul-6-2025-05_03_58-PM.png"
+          alt="Site preparation" loading="lazy">
+        <img class="build-viewer-img" id="bimg-1"
+          src="https://rondavelsheds.com/wp-content/uploads/2025/06/IMG_0619.jpg"
+          alt="Shed framing in progress" loading="lazy">
+        <img class="build-viewer-img" id="bimg-2"
+          src="https://rondavelsheds.com/wp-content/uploads/2025/07/ChatGPT-Image-Jul-6-2025-06_49_33-PM.png"
+          alt="Siding and roofing" loading="lazy">
+        <img class="build-viewer-img" id="bimg-3"
+          src="https://rondavelsheds.com/wp-content/uploads/2025/07/20250516_085733-1024x1024.jpg"
+          alt="Finished custom shed" loading="lazy">
+        <div class="build-viewer-label" id="build-viewer-label">Site Prep</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     PRICING
+===================================================== -->
+<section id="pricing">
+  <div class="container">
+    <h2 class="section-heading">Upfront pricing. No hidden fees.</h2>
+    <p class="section-body" style="margin-bottom: 0;">Every shed includes LP SmartSide siding, architectural shingles, ridge vents, and 7-foot walls. The average build takes 2–3 days.</p>
+
+    <div class="pricing-layout">
+      <!-- Table -->
+      <div>
+        <div class="price-table-wrap">
+          <table class="price-table" aria-label="Base shed prices">
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>Sq Ft</th>
+                <th style="text-align:right;">Starting Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>8′ × 8′</td><td>64</td><td>$3,990</td></tr>
+              <tr><td>8′ × 10′</td><td>80</td><td>$4,590</td></tr>
+              <tr><td>8′ × 12′</td><td>96</td><td>$4,990</td></tr>
+              <tr><td>10′ × 10′</td><td>100</td><td>$5,690</td></tr>
+              <tr><td>10′ × 12′</td><td>120</td><td>$6,690</td></tr>
+              <tr><td>10′ × 16′</td><td>160</td><td>$7,990</td></tr>
+              <tr><td>12′ × 12′</td><td>144</td><td>$7,590</td></tr>
+              <tr><td>12′ × 16′</td><td>192</td><td>$8,990</td></tr>
+              <tr><td>12′ × 20′</td><td>240</td><td>$9,990</td></tr>
+              <tr><td>12′ × 24′</td><td>288</td><td>$10,990</td></tr>
+              <tr><td>Custom (up to 16′ × 24′)</td><td>—</td><td>By quote</td></tr>
+            </tbody>
+          </table>
+          <div class="price-table-note">
+            * Structures over 200 sq ft may require frost protection — priced separately.<br>
+            * Travel charges may apply depending on your location from our base.
+          </div>
+        </div>
+      </div>
+
+      <!-- Side -->
+      <div class="pricing-side">
+        <h3>What every shed includes</h3>
+        <ul class="included-list">
+          <li><span class="check-mark">✓</span> LP SmartSide engineered wood siding</li>
+          <li><span class="check-mark">✓</span> Architectural asphalt shingles</li>
+          <li><span class="check-mark">✓</span> Ridge vents for airflow</li>
+          <li><span class="check-mark">✓</span> 7-foot walls (standard)</li>
+          <li><span class="check-mark">✓</span> Double-door entry</li>
+          <li><span class="check-mark">✓</span> One window</li>
+          <li><span class="check-mark">✓</span> On-site stick-frame construction</li>
+          <li><span class="check-mark">✓</span> No crane or fence removal required</li>
+        </ul>
+
+        <div class="upgrade-box">
+          <strong>Common upgrades:</strong>
+          <p>8′ wall height · extra-wide mower doors · custom paint · workbench &amp; shelving · loft addition · ground anchors for high-wind areas · and more.</p>
+        </div>
+
+        <button class="btn btn-green" style="width:100%;text-align:center;" onclick="openModal(event)">Get my custom quote</button>
+        <p class="financing-note" style="margin-top:12px;">
+          <a href="https://rondavelsheds.com/financing/" target="_blank" rel="noopener">Financing available — learn more</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     SERVICE AREA
+===================================================== -->
+<section id="service-area">
+  <div class="container">
+    <h2 class="section-heading">Where we build.</h2>
+    <p class="section-body">We serve backyards across Rhode Island, Southeastern Massachusetts, and Eastern Connecticut. If you're not sure we cover your town, just ask.</p>
+
+    <div class="service-layout">
+      <div class="state-list">
+        <div class="state-card">
+          <div class="state-icon">🗺</div>
+          <div class="state-info">
+            <h4>Rhode Island</h4>
+            <p>Providence · Warwick · Newport · Cranston · Pawtucket · North Providence · East Greenwich · Barrington · Bristol · and statewide</p>
+          </div>
+        </div>
+        <div class="state-card">
+          <div class="state-icon">🗺</div>
+          <div class="state-info">
+            <h4>Southeastern Massachusetts</h4>
+            <p>Attleboro · Fall River · Taunton · New Bedford · Brockton · Mansfield · Norton · Easton · Rehoboth · Swansea</p>
+          </div>
+        </div>
+        <div class="state-card">
+          <div class="state-icon">🗺</div>
+          <div class="state-info">
+            <h4>Eastern Connecticut</h4>
+            <p>Killingly · Plainfield · Putnam · Thompson · Woodstock · Brooklyn · Canterbury · and surrounding towns</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="contact-card">
+          <h4>Talk to a real builder</h4>
+          <div class="contact-item">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <a href="tel:4013525522">(401) 352-5522</a>
+          </div>
+          <div class="contact-item">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <a href="mailto:info@rondavelsheds.com">info@rondavelsheds.com</a>
+          </div>
+          <div class="contact-item">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <a href="https://www.facebook.com/profile.php?id=61578080519219" target="_blank" rel="noopener">Follow on Facebook</a>
+          </div>
+          <div style="margin-top:24px;">
+            <button class="btn btn-amber" style="width:100%;text-align:center;" onclick="openModal(event)">Request a Quote</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     CTA BAND
+===================================================== -->
+<section id="cta-band">
+  <div class="container">
+    <div class="cta-band-inner">
+      <h2>
+        Your shed could be done by next week.
+        <small>Get a free, itemized quote in 24 hours — no commitment.</small>
+      </h2>
+      <button class="btn-white" onclick="openModal(event)">Start My Quote</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">Rondavel <span>Sheds</span></div>
+        <p>A division of Rondavel Construction LLC. Licensed and insured shed builders serving New England.</p>
+        <ul class="footer-contact-list">
+          <li><a href="tel:4013525522">(401) 352-5522</a></li>
+          <li><a href="mailto:info@rondavelsheds.com">info@rondavelsheds.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>SHED TYPES</h5>
+        <ul>
+          <li><a href="https://rondavelsheds.com/shed-gallery/#gable" target="_blank" rel="noopener">Gable Sheds</a></li>
+          <li><a href="https://rondavelsheds.com/shed-gallery/#lean-to" target="_blank" rel="noopener">Lean-To Sheds</a></li>
+          <li><a href="https://rondavelsheds.com/shed-gallery/#gambrel" target="_blank" rel="noopener">Gambrel Sheds</a></li>
+          <li><a href="https://rondavelsheds.com/typesofsheds/" target="_blank" rel="noopener">All Styles</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>SERVICE AREAS</h5>
+        <ul>
+          <li><a href="https://rondavelsheds.com/shed-builders-in-rhode-island/" target="_blank" rel="noopener">Rhode Island</a></li>
+          <li><a href="https://rondavelsheds.com/shed-builders-in-massachusetts/" target="_blank" rel="noopener">Massachusetts</a></li>
+          <li><a href="https://rondavelsheds.com/shed-builders-in-connecticut/" target="_blank" rel="noopener">Connecticut</a></li>
+          <li><a href="https://rondavelsheds.com/service-areas/" target="_blank" rel="noopener">Full Coverage Map</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>COMPANY</h5>
+        <ul>
+          <li><a href="https://rondavelsheds.com/our-story/" target="_blank" rel="noopener">Our Story</a></li>
+          <li><a href="https://rondavelsheds.com/pricing/" target="_blank" rel="noopener">Pricing</a></li>
+          <li><a href="https://rondavelsheds.com/financing/" target="_blank" rel="noopener">Financing</a></li>
+          <li><a href="https://rondavelsheds.com/resource-library/" target="_blank" rel="noopener">Resource Library</a></li>
+          <li><a href="https://rondavelsheds.com/our-services/" target="_blank" rel="noopener">Our Services</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Rondavel Construction LLC · All Rights Reserved</p>
+      <div class="footer-links">
+        <a href="https://rondavelsheds.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://rondavelsheds.com/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- =====================================================
+     MULTI-STEP QUOTE MODAL
+===================================================== -->
+<div id="modal-bg" role="dialog" aria-modal="true" aria-labelledby="modal-heading" onclick="handleBgClick(event)">
+  <div class="modal">
+    <button class="modal-close-btn" onclick="closeModal()" aria-label="Close">✕</button>
+
+    <div class="modal-top">
+      <h2 id="modal-heading">Get Your Free Quote</h2>
+      <p>Detailed, itemized estimate sent within 24 hours.</p>
+      <div class="modal-progress-bar">
+        <div class="mpbar filled" id="mpb1"></div>
+        <div class="mpbar" id="mpb2"></div>
+        <div class="mpbar" id="mpb3"></div>
+        <div class="mpbar" id="mpb4"></div>
+      </div>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- Step 1: Style -->
+      <div class="modal-step-inner active" id="ms1">
+        <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:16px;">What shed style are you interested in?</p>
+        <div class="choice-set">
+          <div class="choice-tile" onclick="mChoice(this,'mStyle','Gable')" tabindex="0">
+            <span>🏠</span><span>Gable</span>
+          </div>
+          <div class="choice-tile" onclick="mChoice(this,'mStyle','Lean-To')" tabindex="0">
+            <span>📐</span><span>Lean-To</span>
+          </div>
+          <div class="choice-tile" onclick="mChoice(this,'mStyle','Gambrel')" tabindex="0">
+            <span>🏚</span><span>Gambrel</span>
+          </div>
+          <div class="choice-tile" onclick="mChoice(this,'mStyle','Not Sure')" tabindex="0">
+            <span>🤔</span><span>Not Sure Yet</span>
+          </div>
+        </div>
+        <div class="modal-foot">
+          <button class="modal-btn-next" onclick="mNext(1)">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Size -->
+      <div class="modal-step-inner" id="ms2">
+        <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:16px;">What size are you thinking?</p>
+        <div class="choice-set">
+          <div class="choice-tile" onclick="mChoice(this,'mSize','Small (under 8×10)')" tabindex="0">
+            <span>📦</span><span>Small</span>
+          </div>
+          <div class="choice-tile" onclick="mChoice(this,'mSize','Medium (8×10 to 10×12)')" tabindex="0">
+            <span>🏗</span><span>Medium</span>
+          </div>
+          <div class="choice-tile" onclick="mChoice(this,'mSize','Large (10×14+)')" tabindex="0">
+            <span>🏢</span><span>Large</span>
+          </div>
+          <div class="choice-tile" onclick="mChoice(this,'mSize','Not Sure')" tabindex="0">
+            <span>🤷</span><span>Not Sure Yet</span>
+          </div>
+        </div>
+        <div class="modal-foot">
+          <button class="modal-btn-back" onclick="mPrev(2)">Back</button>
+          <button class="modal-btn-next" onclick="mNext(2)">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Location + timeline -->
+      <div class="modal-step-inner" id="ms3">
+        <div class="form-field">
+          <label for="m-town">Your town and state</label>
+          <input type="text" id="m-town" placeholder="e.g. Warwick, RI">
+        </div>
+        <div class="form-field">
+          <label for="m-timeline">When are you hoping to build?</label>
+          <select id="m-timeline">
+            <option value="">Select a timeline…</option>
+            <option>As soon as possible</option>
+            <option>Within 1–3 months</option>
+            <option>3–6 months out</option>
+            <option>Just exploring for now</option>
+          </select>
+        </div>
+        <div class="modal-foot">
+          <button class="modal-btn-back" onclick="mPrev(3)">Back</button>
+          <button class="modal-btn-next" onclick="mNext(3)">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Contact -->
+      <div class="modal-step-inner" id="ms4">
+        <div class="form-field">
+          <label for="m-name">Your name</label>
+          <input type="text" id="m-name" placeholder="Full name">
+        </div>
+        <div class="form-field">
+          <label for="m-email">Email address</label>
+          <input type="email" id="m-email" placeholder="you@email.com">
+        </div>
+        <div class="form-field">
+          <label for="m-phone">Phone number</label>
+          <input type="tel" id="m-phone" placeholder="(401) 000-0000">
+        </div>
+        <div class="modal-foot">
+          <button class="modal-btn-back" onclick="mPrev(4)">Back</button>
+          <button class="modal-btn-next amber-btn" onclick="mSubmit()">Send My Quote Request</button>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="modal-success" id="modal-success">
+        <div class="s-emoji">🎉</div>
+        <h3>Request sent!</h3>
+        <p>We'll have a quote in your inbox within 24 hours. Need it faster? Call or text <a href="tel:4013525522">(401) 352-5522</a>.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // ── NAV scroll ──────────────────────────────────────
+  const siteNav = document.getElementById('site-nav');
+  window.addEventListener('scroll', () => {
+    siteNav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  // ── Mobile nav ──────────────────────────────────────
+  function toggleMobileNav() {
+    document.getElementById('mobile-nav').classList.toggle('open');
+  }
+
+  // ── Quick quote widget ───────────────────────────────
+  const PRICES = {
+    '3990': '$3,990', '4590': '$4,590', '4990': '$4,990',
+    '5690': '$5,690', '6690': '$6,690', '7990': '$7,990',
+    '8990': '$8,990', '9990': '$9,990'
+  };
+
+  function qUpdateStyle() { /* selection captured on submit */ }
+
+  function qUpdateSize(sel) {
+    const hint = document.getElementById('q-price-hint');
+    if (sel.value) {
+      hint.style.display = 'block';
+      hint.textContent = 'Starting from ' + PRICES[sel.value];
+    } else {
+      hint.style.display = 'none';
+    }
+  }
+
+  function qStep1Submit() {
+    const style = document.getElementById('q-style').value;
+    const size  = document.getElementById('q-size').value;
+    const town  = document.getElementById('q-town').value.trim();
+
+    if (!style || !size || !town) {
+      alert('Please fill in all three fields to send your estimate.');
+      return;
+    }
+
+    // In production: POST to your CRM / email handler
+    const body = document.getElementById('qq-body');
+    body.innerHTML = '<div class="qq-success" style="display:block;grid-column:1/-1;">Thanks, ' + town + '! We\'ll send your ' + style + ' (' + PRICES[size] + ' starting) estimate within 24 hours. Call <a href="tel:4013525522" style="color:var(--green-mid);font-weight:700;">(401) 352-5522</a> if you\'d rather talk now.</div>';
+  }
+
+  // ── Gallery filter ────────────────────────────────────
+  function filterGallery(state, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(card => {
+      card.style.display = (state === 'all' || card.dataset.state === state) ? 'block' : 'none';
+    });
+  }
+
+  // ── Build story stage switcher ────────────────────────
+  const stageLabels = ['Site Prep', 'Framing', 'Siding & Roofing', 'Finished Shed'];
+
+  function activateStage(el, idx) {
+    document.querySelectorAll('.build-stage').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.build-viewer-img').forEach(img => img.classList.remove('shown'));
+    document.getElementById('bimg-' + idx).classList.add('shown');
+    document.getElementById('build-viewer-label').textContent = stageLabels[idx];
+  }
+
+  // ── Modal ─────────────────────────────────────────────
+  let mCurrent = 1;
+
+  function openModal(e) {
+    if (e) e.preventDefault();
+    document.getElementById('modal-bg').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal-bg').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleBgClick(e) {
+    if (e.target === document.getElementById('modal-bg')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  function mChoice(el, key, val) {
+    const grid = el.closest('.choice-set');
+    grid.querySelectorAll('.choice-tile').forEach(t => t.classList.remove('sel'));
+    el.classList.add('sel');
+    window[key] = val;
+  }
+
+  function setModalProgress(step) {
+    for (let i = 1; i <= 4; i++) {
+      document.getElementById('mpb' + i).classList.toggle('filled', i <= step);
+    }
+  }
+
+  function mNext(from) {
+    document.getElementById('ms' + from).classList.remove('active');
+    mCurrent = from + 1;
+    document.getElementById('ms' + mCurrent).classList.add('active');
+    setModalProgress(mCurrent);
+  }
+
+  function mPrev(from) {
+    document.getElementById('ms' + from).classList.remove('active');
+    mCurrent = from - 1;
+    document.getElementById('ms' + mCurrent).classList.add('active');
+    setModalProgress(mCurrent);
+  }
+
+  function mSubmit() {
+    const name  = document.getElementById('m-name').value.trim();
+    const email = document.getElementById('m-email').value.trim();
+    const phone = document.getElementById('m-phone').value.trim();
+    if (!name || !email || !phone) {
+      alert('Please fill in all contact fields.');
+      return;
+    }
+    // In production: POST to CRM / email handler
+    document.getElementById('ms4').classList.remove('active');
+    document.getElementById('modal-success').classList.add('show');
+    setModalProgress(4);
+  }
+</script>
+</body>
+</html>
