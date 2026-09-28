@@ -476,23 +476,41 @@
        (floats at bottom of hero on desktop,
         stacks below hero on mobile)
     ============================================ */
+ /* ============================================
+       GLASSMORPHISM QUICK-QUOTE WIDGET (REPLACED)
+    ============================================ */
     #quick-quote {
-      background: var(--white);
+      /* Frosted Glass Background */
+      background: rgba(255, 255, 255, 0.25) !important;
+      backdrop-filter: blur(16px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+      
+      /* Glass Border & Glow */
+      border: 1px solid rgba(255, 255, 255, 0.4) !important;
       border-radius: var(--radius-md);
-      box-shadow: var(--shadow-lift);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+      
       overflow: hidden;
       position: relative;
       z-index: 10;
-      /* On desktop, pull up over the section boundary */
-      margin: 79px 78px 0;
+      margin: 79px auto 0;
       max-width: 1104px;
-      margin-left: auto;
-      margin-right: auto;
       transform: translateY(-48px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #quick-quote:hover {
+      transform: translateY(-52px) !important;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
     }
 
     .qq-header {
-      background: var(--green-mid);
+      background: rgba(26, 46, 31, 0.65) !important; /* Semi-transparent Green Header */
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
       padding: 20px 32px;
       display: flex;
       align-items: center;
@@ -505,10 +523,11 @@
       font-family: var(--serif);
       color: #fff;
       font-size: 1.2rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
     }
 
     .qq-header p {
-      color: rgba(255,255,255,0.6);
+      color: rgba(255, 255, 255, 0.85) !important;
       font-size: 0.82rem;
     }
 
@@ -521,7 +540,7 @@
     .qq-dot {
       width: 7px; height: 7px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.25);
+      background: rgba(255, 255, 255, 0.3);
       transition: background 0.2s, width 0.2s;
     }
 
@@ -546,33 +565,42 @@
 
     .qq-field label {
       font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--text-muted);
+      font-weight: 700;
+      color: var(--green) !important;
+      letter-spacing: 0.02em;
     }
 
+    /* Translucent Inputs & Dropdowns */
     .qq-field select,
     .qq-field input {
-      border: 1.5px solid var(--border);
+      border: 1px solid rgba(255, 255, 255, 0.8) !important;
       border-radius: var(--radius-sm);
       padding: 11px 14px;
       font-family: var(--sans);
       font-size: 0.9rem;
-      color: var(--text);
-      background: var(--bg);
+      color: var(--green) !important;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.75) !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
       outline: none;
-      transition: border-color 0.2s;
+      transition: all 0.2s ease;
       appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231A2E1F' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 14px center !important;
     }
 
     .qq-field input {
-      background-image: none;
+      background-image: none !important;
     }
 
     .qq-field select:focus,
-    .qq-field input:focus { border-color: var(--green-light); }
+    .qq-field input:focus {
+      background: rgba(255, 255, 255, 0.95) !important;
+      border-color: var(--amber) !important;
+      box-shadow: 0 0 0 4px rgba(200, 134, 26, 0.25) !important;
+    }
 
     .qq-submit-btn {
       background: var(--amber);
@@ -583,16 +611,21 @@
       font-size: 0.9rem;
       font-weight: 600;
       white-space: nowrap;
-      transition: background 0.2s;
+      transition: all 0.2s ease;
       align-self: end;
+      box-shadow: 0 4px 12px rgba(200, 134, 26, 0.3);
     }
 
-    .qq-submit-btn:hover { background: var(--amber-soft); }
+    .qq-submit-btn:hover {
+      background: var(--amber-soft);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(200, 134, 26, 0.4);
+    }
 
     .qq-price-hint {
       font-size: 0.75rem;
-      color: var(--green-mid);
-      font-weight: 600;
+      color: var(--green);
+      font-weight: 700;
       display: none;
       margin-top: 4px;
     }
@@ -2190,27 +2223,390 @@ header.scrolled {
   padding: 10px 0 !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
+/* ============================================
+   BRAND LOGO STYLING
+============================================ */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 4px 0;
+}
+
+.brand-logo-img {
+  height: 48px; /* Ideal desktop logo height */
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+.brand:hover .brand-logo-img {
+  transform: scale(1.04);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .brand-logo-img {
+    height: 38px;
+  }
+}
+/* ============================================
+   PRELOADER GLASS & SMOOTH CURTAIN STYLING
+============================================ */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--green);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s cubic-bezier(0.77, 0, 0.175, 1), 
+              visibility 0.8s cubic-bezier(0.77, 0, 0.175, 1),
+              transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform, opacity;
+}
+
+/* Page exit slide-up animation */
+#preloader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+}
+
+.preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.logo-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-logo {
+  height: 65px;
+  width: auto;
+  object-fit: contain;
+  animation: logoPulse 2s ease-in-out infinite;
+}
+
+.spinner-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-top: 2px solid var(--amber);
+  border-radius: 50%;
+  animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+.progress-bar-container {
+  width: 180px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--amber), var(--amber-soft));
+  box-shadow: 0 0 10px var(--amber);
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+
+.preloader-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  animation: fadeInOut 2s infinite;
+}
+
+/* Animations Keyframes */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes logoPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(200, 134, 26, 0)); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 12px rgba(200, 134, 26, 0.4)); }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.9; }
+}
+/* ============================================
+   CUSTOM GLOW CURSOR STYLING
+============================================ */
+/* Hide default cursor on desktop */
+@media (min-width: 992px) {
+  body, a, button, select, input, .btn {
+    cursor: none !important;
+  }
+}
+
+.custom-cursor-dot,
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 999999;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  transition: opacity 0.3s ease, transform 0.15s ease-out;
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: block;
+  }
+}
+
+/* Inner Dot */
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--amber);
+  box-shadow: 0 0 10px var(--amber);
+}
+
+/* Outer Trailing Ring */
+.custom-cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(200, 134, 26, 0.6);
+  background: rgba(200, 134, 26, 0.05);
+  backdrop-filter: blur(1px);
+}
+
+/* Hover State over Interactive Elements (Buttons, Links, Inputs) */
+body.cursor-hover .custom-cursor-ring {
+  width: 55px;
+  height: 55px;
+  border-color: var(--amber-soft);
+  background: rgba(200, 134, 26, 0.15);
+  box-shadow: 0 0 20px rgba(200, 134, 26, 0.3);
+}
+
+body.cursor-hover .custom-cursor-dot {
+  transform: translate(-50%, -50%) scale(1.5);
+  background-color: #fff;
+}
+
+/* Click Active State */
+body.cursor-active .custom-cursor-ring {
+  transform: translate(-50%, -50%) scale(0.8);
+}
+/* ============================================
+   MAP & TOWN CHIPS STYLING
+============================================ */
+.coverage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .coverage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.towns-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.town-chip {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.town-chip:hover {
+  border-color: var(--amber);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(200, 134, 26, 0.2);
+}
+
+/* Active Highlighted City */
+.town-chip.active {
+  background: var(--green) !important;
+  color: #ffffff !important;
+  border-color: var(--green) !important;
+  box-shadow: 0 6px 16px rgba(26, 46, 31, 0.3);
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease;
+}
+
+.map-wrapper iframe {
+  transition: opacity 0.3s ease;
+}
+/* ============================================
+   COVERAGE MAP SECTION STYLING
+============================================ */
+#coverage {
+  padding: 60px 0;
+}
+
+/* Outer Card Container with Glassmorphism & Subtle Border */
+.coverage-card-wrapper {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 36px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+/* Left Column Info */
+.coverage-info h2 {
+  font-family: var(--serif);
+  color: var(--green);
+  font-size: 1.8rem;
+  margin: 8px 0 12px;
+  line-height: 1.25;
+}
+
+.coverage-info p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 20px;
+}
+
+/* City Buttons Grid */
+.towns-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.town-chip {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  padding: 9px 18px;
+  border-radius: 24px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.town-chip:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(200, 134, 26, 0.15);
+}
+
+.town-chip.active {
+  background: var(--green) !important;
+  color: #ffffff !important;
+  border-color: var(--green) !important;
+  box-shadow: 0 4px 12px rgba(26, 46, 31, 0.25);
+}
+
+/* Map Iframe Wrapper with Border Glow */
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 2px solid var(--border);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .coverage-card-wrapper {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 28px;
+  }
+
+  .map-wrapper {
+    height: 320px;
+  }
+}
 
   </style>
 </head>
 <body>
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
+<div class="custom-cursor-ring" id="cursor-ring"></div>
+  <div id="preloader">
+  <div class="preloader-content">
+    <div class="logo-wrapper">
+      <img src="https://i.pinimg.com/736x/fd/a9/46/fda9463760d13c52d6351015cbfeafe4.jpg" alt="Rondavel Sheds" class="preloader-logo">
+      <div class="spinner-ring"></div>
+    </div>
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="preloader-progress"></div>
+    </div>
+    <span class="preloader-text">Crafting Premium Structures...</span>
+  </div>
+</div>
 
 <!-- =====================================================
      NAV
 ===================================================== -->
 <nav id="site-nav">
   <div class="nav-wrap">
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-mark">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
-          <polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-      </div>
-      <div class="nav-logo-text">
-        Rondavel Sheds
-        <small>Rhode Island · MA · CT</small>
-      </div>
+    <a href="#" class="brand">
+  <img src="logo.jpeg" alt="Rondavel Sheds Logo" class="brand-logo-img" width="100" height="50">
+</a>
+     
+      
     </a>
 
     <ul class="nav-links">
@@ -2254,13 +2650,7 @@ header.scrolled {
 <section id="hero">
   <div class="hero-content-wrapper">
     
-    <div class="hero-service-tags">
-      <span class="stag">📍 Rhode Island</span>
-      <span class="stag">📍 Southeastern MA</span>
-      <span class="stag">📍 Eastern CT</span>
-      <span class="stag" style="background: var(--amber); color: #fff; border: none;">🔨 100% Built On-Site</span>
-    </div>
-
+   
     <h1 class="hero-headline">
       Custom Sheds &amp; Studios, <em>Built Right in Your Backyard.</em>
     </h1>
@@ -2281,20 +2671,8 @@ header.scrolled {
 
   </div>
 
-  <div class="hero-trust">
-    <span class="hero-trust-item">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> Licensed &amp; Insured
-    </span>
-    <span class="hero-trust-item">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Quotes in 24 hrs
-    </span>
-    <span class="hero-trust-item">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Financing Available
-    </span>
-    <span class="hero-trust-item">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> 2–3 Day Construction
-    </span>
-  </div>
+  
+  
 </section>
 
 <!-- =====================================================
@@ -2480,7 +2858,7 @@ header.scrolled {
     <div class="section-header text-center">
       <span class="sub-heading">Real On-Site Progress</span>
       <h2 class="section-title">Before &amp; After Transformations</h2>
-      <p class="section-subtitle">See how we transform empty backyards and tight spaces into beautiful functional structures in just 2-3 days.</p>
+      
     </div>
 
     <div class="transformations-container">
@@ -2491,7 +2869,7 @@ header.scrolled {
             <span class="ba-badge before">Before</span>
           </div>
           <div class="ba-img-box">
-            <img src="https://rondavelsheds.com/wp-content/uploads/2025/07/20250516_085733-1024x1024.jpg" alt="Finished On-Site Shed">
+            <img src="https://i.pinimg.com/1200x/dc/6a/f2/dc6af2babf6c7de1246820642784d358.jpg" alt="Finished On-Site Shed">
             <span class="ba-badge after">After</span>
           </div>
         </div>
@@ -2510,7 +2888,7 @@ header.scrolled {
             <span class="ba-badge before">Before</span>
           </div>
           <div class="ba-img-box">
-            <img src="https://images.unsplash.com/photo-1590725140246-20acdee442be?auto=format&fit=crop&w=600&q=80" alt="Completed Storage Shed">
+            <img src="https://i.pinimg.com/1200x/26/3c/1f/263c1fcdcaec91347bb435be32db8e17.jpg" alt="Completed Storage Shed">
             <span class="ba-badge after">After</span>
           </div>
         </div>
@@ -2538,7 +2916,7 @@ header.scrolled {
     <div class="sheds-grid">
       <article class="shed-card">
         <img class="shed-card-img"
-          src="https://rondavelsheds.com/wp-content/uploads/2025/07/20250516_085733-1024x1024.jpg"
+          src="https://i.pinimg.com/1200x/a8/b0/81/a8b081f9b5bbd7016f6c0940762a2efd.jpg"
           alt="Classic Gable Shed built on-site in New England" loading="lazy">
         <div class="shed-card-body">
           <span class="shed-style-tag">Most Popular</span>
@@ -2553,7 +2931,7 @@ header.scrolled {
 
       <article class="shed-card">
         <img class="shed-card-img"
-          src="https://rondavelsheds.com/wp-content/uploads/2025/07/20240720_193335-1-1024x1024.jpg"
+          src="https://i.pinimg.com/1200x/a8/d7/94/a8d7943a210bc5c7715d223e18ee8e33.jpg"
           alt="Lean-To Shed with single-slope modern roof" loading="lazy">
         <div class="shed-card-body">
           <span class="shed-style-tag">Modern &amp; Low-Profile</span>
@@ -2568,7 +2946,7 @@ header.scrolled {
 
       <article class="shed-card">
         <img class="shed-card-img"
-          src="https://rondavelsheds.com/wp-content/uploads/2025/07/20250414_190107-1024x1024.jpg"
+          src="https://i.pinimg.com/1200x/60/d0/f7/60d0f74855be8778c62903c7cecc1b8e.jpg"
           alt="Gambrel barn-style shed with extra headroom" loading="lazy">
         <div class="shed-card-body">
           <span class="shed-style-tag">Maximum Headroom</span>
@@ -2749,67 +3127,40 @@ header.scrolled {
   </div>
 </section>
 
-<section id="service-areas" class="section animate-fade-up">
+<section id="coverage" class="reveal">
   <div class="container">
-    <div class="section-header text-center">
-      <span class="sub-heading">Coverage &amp; Locations</span>
-      <h2 class="section-title">Service Areas &amp; Completed Projects</h2>
-      <p class="section-subtitle">We construct custom sheds throughout Rhode Island, Southeastern Massachusetts, and Eastern Connecticut.</p>
-    </div>
+    <div class="coverage-card-wrapper">
+      
+      <div class="coverage-info">
+        <span class="stag">Service Area</span>
+        <h2>We Build On-Site Across Rhode Island & Southern MA</h2>
+        <p>Click on any town below to view our service coverage on the map:</p>
 
-    <div class="map-layout">
-      <div class="towns-accordion">
-        <div class="state-group">
-          <div class="state-header">
-            <span>Rhode Island (Primary)</span>
-            <small>100+ Builds</small>
-          </div>
-          <div class="towns-list">
-            <span class="town-chip">Providence</span>
-            <span class="town-chip">Warwick</span>
-            <span class="town-chip">Newport</span>
-            <span class="town-chip">Cranston</span>
-            <span class="town-chip">South Kingstown</span>
-            <span class="town-chip">Narragansett</span>
-            <span class="town-chip">Barrington</span>
-          </div>
-        </div>
-
-        <div class="state-group">
-          <div class="state-header">
-            <span>Southeastern Massachusetts</span>
-            <small>45+ Builds</small>
-          </div>
-          <div class="towns-list">
-            <span class="town-chip">Attleboro</span>
-            <span class="town-chip">Fall River</span>
-            <span class="town-chip">New Bedford</span>
-            <span class="town-chip">Seekonk</span>
-            <span class="town-chip">Dartmouth</span>
-          </div>
-        </div>
-
-        <div class="state-group">
-          <div class="state-header">
-            <span>Eastern Connecticut</span>
-            <small>30+ Builds</small>
-          </div>
-          <div class="towns-list">
-            <span class="town-chip">Stonington</span>
-            <span class="town-chip">Mystic</span>
-            <span class="town-chip">Groton</span>
-            <span class="town-chip">Norwich</span>
-          </div>
+        <div class="towns-chips-grid">
+          <button class="town-chip active" onclick="updateMap('Providence, RI', this)">Providence, RI</button>
+          <button class="town-chip" onclick="updateMap('Warwick, RI', this)">Warwick, RI</button>
+          <button class="town-chip" onclick="updateMap('Cranston, RI', this)">Cranston, RI</button>
+          <button class="town-chip" onclick="updateMap('Newport, RI', this)">Newport, RI</button>
+          <button class="town-chip" onclick="updateMap('Fall River, MA', this)">Fall River, MA</button>
+          <button class="town-chip" onclick="updateMap('New Bedford, MA', this)">New Bedford, MA</button>
+          <button class="town-chip" onclick="updateMap('Attleboro, MA', this)">Attleboro, MA</button>
+          <button class="town-chip" onclick="updateMap('Taunton, MA', this)">Taunton, MA</button>
         </div>
       </div>
 
-      <div class="map-container-mock">
+      <div class="map-wrapper">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d380628.7885747683!2d-71.650000!3d41.600000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e445e0322d7d8d%3A0xb214f52636a048a1!2sRhode%20Island%2C%20USA!5e0!3m2!1sen!2s!4v1680000000000" 
+          id="service-map"
+          src="https://maps.google.com/maps?q=Providence,%20RI&t=&z=11&ie=UTF8&iwloc=&output=embed" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
           allowfullscreen="" 
-          loading="lazy">
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
+
     </div>
   </div>
 </section>
@@ -3303,6 +3654,96 @@ header.scrolled {
     }
 
   });
+  // Preloader Progress & Smooth Exit Logic
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  const progressBar = document.getElementById('preloader-progress');
+
+  if (progressBar) progressBar.style.width = '100%';
+
+  setTimeout(() => {
+    if (preloader) preloader.classList.add('loaded');
+  }, 400); // 400ms delay for smooth finish transition
+});
+
+// Fallback: Max timeout agar assets load hone me der ho (Fast user experience)
+setTimeout(() => {
+  const preloader = document.getElementById('preloader');
+  if (preloader && !preloader.classList.contains('loaded')) {
+    preloader.classList.add('loaded');
+  }
+}, 3000);
+// ── SMOOTH FLUID CURSOR ENGINE ──────────────────────────
+const dot = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+
+if (dot && ring && window.innerWidth >= 992) {
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    // Dot moves instantly
+    dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+  }, { passive: true });
+
+  // Smooth lerp (linear interpolation) animation loop for ring
+  function renderCursor() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    
+    ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+    requestAnimationFrame(renderCursor);
+  }
+  requestAnimationFrame(renderCursor);
+
+  // Hover detection for interactive elements
+  const interactiveTargets = 'a, button, input, select, .btn, .choice-tile, .gallery-item, .town-chip';
+  
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest(interactiveTargets)) {
+      document.body.classList.add('cursor-hover');
+    }
+  });
+
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest(interactiveTargets)) {
+      document.body.classList.remove('cursor-hover');
+    }
+  });
+
+  // Click Feedback
+  window.addEventListener('mousedown', () => document.body.classList.add('cursor-active'));
+  window.addEventListener('mouseup', () => document.body.classList.remove('cursor-active'));
+}
+// ── INTERACTIVE MAP UPDATE FUNCTION ─────────────────────
+function updateMap(cityName, btnElement) {
+  // 1. All chips se active class remove karein aur clicked chip par add karein
+  document.querySelectorAll('.town-chip').forEach(chip => {
+    chip.classList.remove('active');
+  });
+  if (btnElement) {
+    btnElement.classList.add('active');
+  }
+
+  // 2. Map Iframe update
+  const mapIframe = document.getElementById('service-map');
+  if (mapIframe) {
+    // Smooth transition effect
+    mapIframe.style.opacity = '0.3';
+    
+    // Encode city name for Google Maps embed URL
+    const encodedCity = encodeURIComponent(cityName);
+    const newSrc = `https://maps.google.com/maps?q=${encodedCity}&t=&z=12&ie=UTF8&iwloc=&output=embed`;
+    
+    setTimeout(() => {
+      mapIframe.src = newSrc;
+      mapIframe.style.opacity = '1';
+    }, 200);
+  }
+}
 </script>
 </body>
 </html>
